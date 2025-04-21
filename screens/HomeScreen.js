@@ -1,13 +1,12 @@
-import { SafeAreaView, StyleSheet, Text, View, Image} from 'react-native'
-import React from 'react'
-import tw from 'twrnc';
-import NavOptions from '../components/NavOptions';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { GOOGLE_MAPS_APIKEY } from '@env';
-import { useDispatch } from 'react-redux';
-import { setDestination, setOrigin } from '../slices/navSlice';
-import NavFavorites from '../components/NavFavorites';
-
+import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import React from "react";
+import tw from "twrnc";
+import NavOptions from "../components/NavOptions";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { GOOGLE_MAPS_APIKEY } from "@env";
+import { useDispatch } from "react-redux";
+import { setDestination, setOrigin } from "../slices/navSlice";
+import NavFavorites from "../components/NavFavorites";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -15,15 +14,14 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
       <View style={tw`p-5`}>
-        <Image 
-          style={{width: 100, height: 100, resizeMode: 'contain'}}
+        <Image
+          style={{ width: 100, height: 100, resizeMode: "contain" }}
           source={{
-            uri: 'https://links.papareact.com/gzs',
+            uri: "https://links.papareact.com/gzs",
           }}
         />
-
-        <GooglePlacesAutocomplete 
-          placeholder='Where From?'
+        <GooglePlacesAutocomplete
+          placeholder="Where From?"
           styles={{
             container: {
               flex: 0,
@@ -32,7 +30,7 @@ const HomeScreen = () => {
               fontSize: 18,
             },
           }}
-          returnKeyType={'search'}
+          returnKeyType={"search"}
           onPress={(data, details = null) => {
             dispatch(
               setOrigin({
@@ -43,27 +41,26 @@ const HomeScreen = () => {
             dispatch(setDestination(null));
           }}
           fetchDetails={true}
-          nearbyPlacesAPI='GooglePlacesSearch'
+          nearbyPlacesAPI="GooglePlacesSearch"
           minLength={2}
           enablePoweredByContainer={false}
           query={{
             key: GOOGLE_MAPS_APIKEY,
-            language: 'en',
+            language: "en",
           }}
           debounce={400}
         />
-
         <NavOptions />
         <NavFavorites />
       </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,
-  }
-})
+  },
+});
